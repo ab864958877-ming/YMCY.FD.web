@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>躍馬中原基金會 - 首頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'Microsoft JhengHei', '微軟正黑體', sans-serif; 
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+        
+        /* ==========================================
+           1. 全屏背景照片區塊 (明亮淡化處理)
+           ========================================== */
+        .hero-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('莊敬大樓.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            /* 讓照片稍微帶一點灰度，避免色彩太跳 */
+            filter: grayscale(20%); 
+        }
+
+        /* 2. 白色亮色遮罩 (White Overlay) - 關鍵在於這裡的透明度 */
+        .hero-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* 使用 0.85 的白色透明度，讓背景看起來像是在霧面玻璃後 */
+            background: rgba(255, 255, 255, 0.65); 
+            z-index: -1;
+        }
+
+        /* 明亮科技感導覽列 */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* 導覽連結 */
+        .nav-link {
+            position: relative;
+            font-weight: 700;
+            color: #4b5563;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover { color: #2563eb; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 50%; width: 0; height: 2px;
+            background: #2563eb;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* 卡片設計 - 增加毛玻璃質感 (Glassmorphism) */
+        .news-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
+            border-color: #2563eb;
+        }
+
+        /* 留言板區塊 */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <header class="glass-nav fixed top-0 w-full z-50 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-1 bg-blue-600 rounded-xl shadow-lg shadow-blue-200">
+                    <img src="logo.jpg" alt="Logo" class="w-8 h-8 rounded-lg">
+                </div>
+                <span class="text-xl font-black tracking-tighter text-gray-900 italic">躍馬中原 <span class="text-blue-600 not-italic text-sm uppercase">Foundation</span></span>
+            </div>
+            
+            <nav class="hidden lg:flex space-x-10">
+                <a href="index.html" class="nav-link text-blue-600">首頁 / 最新消息</a>
+                <a href="about.html" class="nav-link">關於基金會</a>
+                <a href="review.html" class="nav-link">活動回顧</a>
+                <a href="alumni.html" class="nav-link">系友訪談</a>
+                <a href="support.html" class="nav-link">工工後援部隊</a>
+            </nav>
+
+            <button class="lg:hidden text-gray-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-44 pb-20 px-6 max-w-6xl mx-auto relative z-10">
+        
+        <section class="text-center mb-32">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase">
+                Welcome to YMCU IE
+            </div>
+            <h2 class="text-6xl font-black tracking-tighter text-gray-900 mb-8">
+                深耕中原，<span class="text-blue-600">躍馬全球</span>
+            </h2>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed font-medium">
+                以莊敬大樓為起點，我們聯結系友情感，整合各界資源，<br>為工業與系統工程學系的未來注入無限可能。
+            </p>
+        </section>
+
+        <section id="news" class="mb-32">
+            <div class="flex items-center space-x-3 mb-12">
+                <div class="w-2 h-8 bg-blue-600 rounded-full"></div>
+                <h3 class="text-3xl font-black tracking-tight text-gray-900">最新動態 / <span class="text-blue-600 text-lg">News</span></h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+
+                <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                    <p class="text-xs font-bold text-blue-500 mb-4 tracking-widest">AUGUST 04, 2025</p>
+                    <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">「寶島千里行走透透」系友見面會活動回顧</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">工業與系統工程學系邁入第 60 個年頭，我們誠摯邀請您一同回顧熱血時刻...</p>
+                    <div class="flex items-center text-blue-600 font-bold text-xs mt-auto">
+                        閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+                    </div>
+                </div>
+
+                <a href="alumni.html" class="block h-full"> 
+                    <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                        <p class="text-xs font-black text-purple-600 mb-4 tracking-widest">DECEMBER 02, 2024</p>
+                        <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-purple-600 transition-colors tracking-tight">傑出校友周霞麗學姐專訪：系統思維與公益</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">深入探討如何將工工系的嚴謹邏輯，轉化為推動社會公益的力量...</p>
+                        <div class="flex items-center text-purple-600 font-black text-xs mt-auto">
+                            閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M13 7l5 5-5 5"/></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                    <p class="text-xs font-bold text-blue-500 mb-4 tracking-widest">AUGUST 04, 2025</p>
+                    <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">「寶島千里行走透透」活動測試內容</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 1...</p>
+                    <div class="flex items-center text-blue-600 font-bold text-xs mt-auto">
+                        閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+                    </div>
+                </div>
+
+                <a href="alumni.html" class="block h-full"> 
+                    <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                        <p class="text-xs font-black text-purple-600 mb-4 tracking-widest">DECEMBER 02, 2024</p>
+                        <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">傑出校友專訪測試內容 2</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 2...</p>
+                        <div class="flex items-center text-purple-600 font-black text-xs mt-auto">
+                            閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M13 7l5 5-5 5"/></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                    <p class="text-xs font-bold text-blue-500 mb-4 tracking-widest">AUGUST 04, 2025</p>
+                    <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">「寶島千里行走透透」活動測試內容 3</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 3...</p>
+                    <div class="flex items-center text-blue-600 font-bold text-xs mt-auto">
+                        閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+                    </div>
+                </div>
+
+                <a href="alumni.html" class="block h-full"> 
+                    <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                        <p class="text-xs font-black text-purple-600 mb-4 tracking-widest">DECEMBER 02, 2024</p>
+                        <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">傑出校友專訪測試內容 4</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 4...</p>
+                        <div class="flex items-center text-purple-600 font-black text-xs mt-auto">
+                            閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M13 7l5 5-5 5"/></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                    <p class="text-xs font-bold text-blue-500 mb-4 tracking-widest">AUGUST 04, 2025</p>
+                    <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">「寶島千里行走透透」活動測試內容 5</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 5...</p>
+                    <div class="flex items-center text-blue-600 font-bold text-xs mt-auto">
+                        閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+                    </div>
+                </div>
+
+                <a href="alumni.html" class="block h-full"> 
+                    <div class="news-card p-8 rounded-[2rem] group cursor-pointer border-transparent flex flex-col h-full">
+                        <p class="text-xs font-black text-purple-600 mb-4 tracking-widest">DECEMBER 02, 2024</p>
+                        <h4 class="text-xl font-black text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">傑出校友專訪測試內容 6</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">這是為了測試排列效果的重複區塊 6...</p>
+                        <div class="flex items-center text-purple-600 font-black text-xs mt-auto">
+                            閱讀詳情 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M13 7l5 5-5 5"/></svg>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="contact" class="max-w-4xl mx-auto">
+            <div class="contact-card p-12 md:p-16 rounded-[3rem] relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-black text-gray-900 mb-2">聯繫我們</h3>
+                    <p class="text-gray-400 mb-10 font-medium italic">Your voice matters to us.</p>
+                    
+                    <form action="mailto:ymcu6666@gmail.com" method="post" enctype="text/plain" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-1">
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-2">您的姓名</label>
+                            <input type="text" name="姓名" required 
+                                class="w-full bg-gray-50 border border-gray-100 px-6 py-4 rounded-2xl text-gray-800 outline-none focus:border-blue-500 focus:bg-white transition-all shadow-inner" 
+                                placeholder="怎麼稱呼您？">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-2">留言內容</label>
+                            <textarea name="留言內容" rows="4" required 
+                                class="w-full bg-gray-50 border border-gray-100 px-6 py-4 rounded-2xl text-gray-800 outline-none focus:border-blue-500 focus:bg-white transition-all shadow-inner" 
+                                placeholder="想跟我們說些什麼呢..."></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <button type="submit" 
+                                class="w-full bg-gray-900 text-white font-bold py-5 rounded-2xl hover:bg-blue-600 transition-all transform active:scale-[0.98] shadow-xl shadow-blue-100">
+                                發送訊息
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16 text-center">
+        <p class="text-gray-300 text-xs tracking-[0.3em] font-bold uppercase mb-4">Network Computer Lab x YM Foundation</p>
+        <p class="text-gray-400 text-[10px]">© 2026 CYCU IE ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
