@@ -6,6 +6,18 @@
     <title>關於基金會 - 躍馬中原基金會</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+
+        /* 手機選單平滑動畫 */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         :root { scroll-behavior: smooth; }
         body { 
             font-family: 'Inter', 'Microsoft JhengHei', '微軟正黑體', sans-serif; 
@@ -63,20 +75,35 @@
     <div class="hero-overlay"></div>
 
     <header class="glass-nav fixed top-0 w-full z-50 h-20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center relative z-50 bg-white/80 lg:bg-transparent">
             <div class="flex items-center space-x-3">
                 <div class="p-1 bg-blue-600 rounded-xl shadow-lg">
                     <img src="logo.jpg" alt="Logo" class="w-8 h-8 rounded-lg">
                 </div>
-                <span class="text-xl font-black tracking-tighter text-gray-900 italic">躍馬中原 <span class="text-blue-600 font-bold not-italic text-sm uppercase">Foundation</span></span>
+                <span class="text-xl font-black tracking-tighter text-gray-900 italic">躍馬中原 <span class="text-blue-600 not-italic text-sm uppercase font-bold">Foundation</span></span>
             </div>
+            
             <nav class="hidden lg:flex space-x-10">
                 <a href="index.html" class="nav-link">首頁 / 最新消息</a>
-                <a href="about.html" class="nav-link text-blue-700">關於基金會</a>
+                <a href="about.html" class="nav-link">關於基金會</a>
                 <a href="review.html" class="nav-link">活動回顧</a>
                 <a href="alumni.html" class="nav-link">系友訪談</a>
                 <a href="support.html" class="nav-link">工工後援部隊</a>
             </nav>
+
+            <button onclick="toggleMenu()" class="lg:hidden text-gray-800 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 flex flex-col p-6 space-y-4 shadow-2xl pointer-events-none">
+            <a href="index.html" class="text-lg font-black text-gray-800 py-2 border-b border-gray-50 hover:text-blue-600">首頁 / 最新消息</a>
+            <a href="about.html" class="text-lg font-black text-gray-800 py-2 border-b border-gray-50 hover:text-blue-600">關於基金會</a>
+            <a href="review.html" class="text-lg font-black text-gray-800 py-2 border-b border-gray-50 hover:text-blue-600">活動回顧</a>
+            <a href="alumni.html" class="text-lg font-black text-gray-800 py-2 border-b border-gray-50 hover:text-blue-600">系友訪談</a>
+            <a href="support.html" class="text-lg font-black text-gray-800 py-2 hover:text-blue-600">工工後援部隊</a>
         </div>
     </header>
 
@@ -951,5 +978,27 @@
             });
         });
     </script>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('active')) {
+                // 關閉選單
+                menu.classList.remove('active', 'pointer-events-auto');
+                menu.classList.add('pointer-events-none');
+                // 圖示換回三條線
+                icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            } else {
+                // 開啟選單
+                menu.classList.add('active', 'pointer-events-auto');
+                menu.classList.remove('pointer-events-none');
+                // 圖示換成 X
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        }
+    </script>
+
 </body>
 </html>
